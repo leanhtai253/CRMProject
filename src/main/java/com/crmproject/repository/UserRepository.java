@@ -11,4 +11,6 @@ public interface UserRepository {
     public List<TasksByStatus> countTasksByStatus(int id) throws SQLException;
     public List<Members> findAllMembers() throws SQLException;
     public UserDetails findUserDetails(int userId) throws SQLException;
+    public List<CountryModel> getCountries() throws SQLException;
+    public boolean addUser(UserModel userModel) throws SQLException;
 }
