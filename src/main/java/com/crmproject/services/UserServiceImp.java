@@ -1,9 +1,6 @@
 package com.crmproject.services;
 
-import com.crmproject.model.Members;
-import com.crmproject.model.TasksByStatus;
-import com.crmproject.model.UserDetails;
-import com.crmproject.model.UserModel;
+import com.crmproject.model.*;
 import com.crmproject.repository.UserRepository;
 import com.crmproject.repository.UserRepositoryImp;
 
@@ -35,5 +32,15 @@ public class UserServiceImp implements UserService{
     @Override
     public UserDetails findUserDetailsById(int id) throws SQLException {
         return userRepository.findUserDetails(id);
+    }
+
+    @Override
+    public List<CountryModel> getCountries() throws SQLException {
+        return userRepository.getCountries();
+    }
+
+    @Override
+    public boolean addUser(UserModel user) throws SQLException {
+        return userRepository.addUser(user);
     }
 }

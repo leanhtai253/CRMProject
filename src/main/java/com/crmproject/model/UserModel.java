@@ -10,6 +10,24 @@ public class UserModel {
     private String pwd;
     private String avatar;
     private String bgImg;
+    private String phone;
+    private String country;
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
 
     public int getUserID() {
         return userID;

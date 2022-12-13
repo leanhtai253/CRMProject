@@ -1,9 +1,6 @@
 package com.crmproject.services;
 
-import com.crmproject.model.Members;
-import com.crmproject.model.TasksByStatus;
-import com.crmproject.model.UserDetails;
-import com.crmproject.model.UserModel;
+import com.crmproject.model.*;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -14,4 +11,6 @@ public interface UserService {
     public List<TasksByStatus> countTasksByStatus(int id) throws SQLException;
     public List<Members> findAllMembers() throws SQLException;
     public UserDetails findUserDetailsById(int id) throws SQLException;
+    public List<CountryModel> getCountries() throws SQLException;
+    public boolean addUser(UserModel user) throws SQLException;
 }

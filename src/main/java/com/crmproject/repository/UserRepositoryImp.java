@@ -145,6 +145,44 @@ public class UserRepositoryImp implements UserRepository{
         return userDetails;
     }
 
+    @Override
+    public List<CountryModel> getCountries() throws SQLException {
+        String query = String.format("select name from countries;");
+        Connection connection = MysqlConfig.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        ResultSet resultSet = preparedStatement.executeQuery(query);
+        List<CountryModel> list = new ArrayList<>();
+        while (resultSet.next()) {
+            CountryModel country = new CountryModel();
+            country.setName(resultSet.getString("name"));
+
+            list.add(country);
+        }
+        resultSet.close();
+        preparedStatement.close();
+        connection.close();
+        return list;
+    }
+
+    @Override
+    public boolean addUser(UserModel userModel) throws SQLException {
+        try {
+            String query = String.format("INSERT INTO User (lastName, firstName, username, email, roleID, pwd, avatar, bgImg, phone, country)\n" +
+                            "VALUES ('%s', '%s', '' ,'%s', 3, '%s', 'plugins/images/users/default.png',\n" +
+                            "'plugins/images/large/img1.jpg', '%s', '%s');",
+                    userModel.getLastName(), userModel.getFirstName(), userModel.getEmail(),
+                    userModel.getPwd(), userModel.getPhone(), userModel.getCountry());
+            Connection connection = MysqlConfig.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            int i = preparedStatement.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            System.out.println("Error add user " + e);
+            return false;
+        }
+
+    }
+
     private UserModel fillInUserInfo(ResultSet resultSet) throws SQLException {
         UserModel userModel = new UserModel();
         userModel.setUserID(resultSet.getInt("userID"));
