@@ -125,6 +125,26 @@ public class ProjectRepositoryImp implements ProjectRepository{
         return list;
     }
 
+    @Override
+    public boolean addProject(ProjectModel project) {
+        try {
+            String query = String.format("insert into Project (name,startD,endD) \n" +
+                            "values ('%s','%s','%s');",
+                    project.getName(),project.getStartD(),project.getEndD());
+            Connection connection = MysqlConfig.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            int result = preparedStatement.executeUpdate();
+
+            preparedStatement.close();
+            connection.close();
+            return true;
+        } catch (Exception e) {
+            System.out.println("Error add project " + e);
+            return false;
+        }
+
+    }
+
     private ProjectModel fillInProjectInfo(ResultSet resultSet) throws SQLException {
         ProjectModel project = new ProjectModel();
         project.setProjectID(resultSet.getInt("projectID"));

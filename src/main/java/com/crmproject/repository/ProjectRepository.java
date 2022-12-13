@@ -13,4 +13,5 @@ public interface ProjectRepository {
     public List<TasksByStatus> countTasksByStatus(int id) throws SQLException;
     public List<TaskComplete> getMembersTasksByStatus(int uid, int pid, int stid) throws SQLException;
     public List<UserModel> getMembersOfProject(int pid) throws SQLException;
+    public boolean addProject(ProjectModel project);
 }

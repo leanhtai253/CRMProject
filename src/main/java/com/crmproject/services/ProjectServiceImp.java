@@ -31,4 +31,9 @@ public class ProjectServiceImp implements ProjectService{
     public List<UserModel> getMembersOfProject(int pid) throws SQLException {
         return projectRepository.getMembersOfProject(pid);
     }
+
+    @Override
+    public boolean addProject(ProjectModel project) {
+        return projectRepository.addProject(project);
+    }
 }

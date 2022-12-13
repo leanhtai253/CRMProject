@@ -11,7 +11,7 @@ $(document).ready(function(){
                 data: JSON.stringify(requestData)
             }).done(function(data){
                 if (data.isSuccess) {
-                    window.location.href="http://localhost:8080/api/roles"
+                    window.location.href="http://localhost:8080/roles"
                 } else {
                     alert("Failed to add role")
                 }
@@ -19,5 +19,8 @@ $(document).ready(function(){
         } else {
             alert("Role name cannot be blank")
         }
+    })
+    $(document).on("click","#returnBtn",function(){
+        window.location.href="http://localhost:8080/roles"
     })
 })
