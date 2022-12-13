@@ -35,7 +35,8 @@ $(document).ready(function() {
         else {
             alert("Please fill in your email and password")
         }
-        console.log(JSON.stringify(dataToSend))
-
+    })
+    $(document).on("click", "#returnBtn", function(){
+        window.location.href="http://localhost:8080/users"
     })
 })

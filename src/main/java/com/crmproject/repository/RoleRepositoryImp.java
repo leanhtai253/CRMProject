@@ -30,6 +30,24 @@ public class RoleRepositoryImp implements RoleRepository{
         return list;
     }
 
+    @Override
+    public boolean addRole(RoleModel role) throws SQLException {
+        try {
+            String query = String.format("insert into Role (name, descr)\n" +
+                    "values ('%s','%s');", role.getName(), role.getDescr());
+            Connection connection = MysqlConfig.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            int result = preparedStatement.executeUpdate();
+
+            preparedStatement.close();
+            connection.close();
+            return true;
+        } catch (Exception e) {
+            System.out.println("Error add role " + e);
+            return false;
+        }
+    }
+
     private RoleModel fillInRoleInfo(ResultSet resultSet) throws SQLException {
         RoleModel role = new RoleModel();
         role.setRoleID(resultSet.getInt("roleID"));

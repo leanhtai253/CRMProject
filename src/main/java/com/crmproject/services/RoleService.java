@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface RoleService {
     public List<RoleModel> getAllRoles() throws SQLException;
+    public boolean addRole(RoleModel role) throws SQLException;
 }

@@ -13,4 +13,9 @@ public class RoleServiceImp implements RoleService{
     public List<RoleModel> getAllRoles() throws SQLException {
         return roleRepository.getAllRoles();
     }
+
+    @Override
+    public boolean addRole(RoleModel role) throws SQLException {
+        return roleRepository.addRole(role);
+    }
 }
