@@ -175,6 +175,8 @@ public class UserRepositoryImp implements UserRepository{
             Connection connection = MysqlConfig.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             int i = preparedStatement.executeUpdate();
+            preparedStatement.close();
+            connection.close();
             return true;
         } catch (Exception e) {
             System.out.println("Error add user " + e);

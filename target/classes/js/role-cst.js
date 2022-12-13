@@ -18,4 +18,7 @@ $(document).ready(function(){
             })
         })
     })
+    $(document).on("click", "#addRoleBtn", function(){
+        window.location.href="http://localhost:8080/newRole"
+    })
 })
