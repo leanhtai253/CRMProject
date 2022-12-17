@@ -35,4 +35,9 @@ public class TaskServiceImp implements TaskService{
     public List<TaskComplete> getCompleteTasksList() throws SQLException {
         return taskRepository.getCompleteTasksList();
     }
+
+    @Override
+    public boolean addTask(TaskComplete task) throws SQLException {
+        return taskRepository.addTask(task);
+    }
 }

@@ -12,4 +12,5 @@ public interface TaskRepository {
     public boolean updateTaskStatus(int taskID, int statusID) throws SQLException;
     public List<TaskModel> findTasksByUserAndStatus(int userId, int statusId) throws SQLException;
     public List<TaskComplete> getCompleteTasksList() throws SQLException;
+    public boolean addTask(TaskComplete task) throws SQLException;
 }

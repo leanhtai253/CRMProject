@@ -13,6 +13,9 @@ $(document).ready(function() {
             $("#taskRows").append(value)
         })
     })
+    $(document).on("click", "#addTaskBtn", function() {
+        window.location.href="http://localhost:8080/newTask"
+    })
 })
 
 function setUpData(da) {
