@@ -1,6 +1,5 @@
 package com.crmproject.api;
 
-import com.crmproject.model.UserDetails;
 import com.crmproject.model.UserModel;
 import com.crmproject.payload.ResponseData;
 import com.crmproject.services.UserService;
@@ -14,10 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
-@WebServlet(name="userApiServlet", urlPatterns = {"/api/userApi"})
-public class UserApi extends HttpServlet {
+@WebServlet(name="userWithPwdApiServlet", urlPatterns = {"/api/editUser"})
+public class UserWithPwdApi extends HttpServlet {
     private UserService userService = new UserServiceImp();
 
     @Override
@@ -25,7 +23,7 @@ public class UserApi extends HttpServlet {
         ResponseData responseData = new ResponseData();
         try {
             int viewUserId = Integer.parseInt((String) req.getSession().getAttribute("viewUserId"));
-            UserModel user = userService.findUserById(viewUserId).get(0);
+            UserModel user = userService.findUserByIdWithPwd(viewUserId).get(0);
             responseData.setStatus(200);
             responseData.setSuccess(true);
             responseData.setData(user);

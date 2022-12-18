@@ -46,7 +46,27 @@ $(document).ready(function() {
             }
         })
     })
+    $(document).on("click", ".memberUpdateBtn", function(){
+        let userId = $(this).closest(".memberRow").attr("userid")
+        var requestData = {
+            userid: userId
+        }
+        $.ajax({
+            method: "POST",
+            url: "http://localhost:8080/api/userDetails",
+            data: JSON.stringify(requestData),
+            contentType: "application/json; charset=utf-8"
+        }).done(function(data){
+            if (data.isSuccess) {
+                window.location.href="http://localhost:8080/editUser"
+            }
+        })
+    })
+
     $(document).on("click", "#addMemBtn", function() {
         window.location.href="http://localhost:8080/newUser"
+    })
+    $(document).on("click", ".memberUpdateBtn", function() {
+        window.location.href="http://localhost:8080/editUser"
     })
 })

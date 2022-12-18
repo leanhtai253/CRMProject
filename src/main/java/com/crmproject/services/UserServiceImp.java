@@ -20,6 +20,11 @@ public class UserServiceImp implements UserService{
     }
 
     @Override
+    public List<UserModel> findUserByIdWithPwd(int id) throws SQLException {
+        return userRepository.findUserByIdWithPwd(id);
+    }
+
+    @Override
     public List<TasksByStatus> countTasksByStatus(int id) throws SQLException {
         return userRepository.countTasksByStatus(id);
     }
@@ -29,10 +34,10 @@ public class UserServiceImp implements UserService{
         return userRepository.findAllMembers();
     }
 
-    @Override
-    public UserDetails findUserDetailsById(int id) throws SQLException {
-        return userRepository.findUserDetails(id);
-    }
+//    @Override
+//    public UserDetails findUserDetailsById(int id) throws SQLException {
+//        return userRepository.findUserDetails(id);
+//    }
 
     @Override
     public List<CountryModel> getCountries() throws SQLException {
@@ -42,5 +47,10 @@ public class UserServiceImp implements UserService{
     @Override
     public boolean addUser(UserModel user) throws SQLException {
         return userRepository.addUser(user);
+    }
+
+    @Override
+    public boolean modifyUser(UserModel userModel) {
+        return userRepository.modifyUser(userModel);
     }
 }
