@@ -53,4 +53,9 @@ public class UserServiceImp implements UserService{
     public boolean modifyUser(UserModel userModel) {
         return userRepository.modifyUser(userModel);
     }
+
+    @Override
+    public boolean deleteUserById(int id) {
+        return userRepository.deleteUserById(id);
+    }
 }
