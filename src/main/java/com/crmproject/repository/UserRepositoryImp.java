@@ -228,6 +228,22 @@ public class UserRepositoryImp implements UserRepository{
         }
     }
 
+    @Override
+    public boolean deleteUserById(int id) {
+        try {
+            String query = String.format("delete from User where userID=%d;",id);
+            Connection connection = MysqlConfig.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            int i = preparedStatement.executeUpdate();
+            preparedStatement.close();
+            connection.close();
+            return true;
+        } catch (Exception e) {
+            System.out.println("Error delete user " + e);
+            return false;
+        }
+    }
+
     private UserModel fillInUserInfo(ResultSet resultSet) throws SQLException {
         UserModel userModel = new UserModel();
         userModel.setUserID(resultSet.getInt("userID"));

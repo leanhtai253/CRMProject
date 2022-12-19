@@ -69,4 +69,40 @@ $(document).ready(function() {
     $(document).on("click", ".memberUpdateBtn", function() {
         window.location.href="http://localhost:8080/editUser"
     })
+    $(document).on("click", ".memberDeleteConfirmBtn", function() {
+        let userId = $(this).closest(".memberRow").attr("userid")
+        var requestData = {
+            userid: userId
+        }
+        $.ajax({
+            method: "POST",
+            url: "http://localhost:8080/api/userDetails",
+            data: JSON.stringify(requestData),
+            contentType: "application/json; charset=utf-8"
+        }).done(function(data){
+            if (data.isSuccess) {
+                $.ajax({
+                    method: "POST",
+                    url: "http://localhost:8080/api/deleteUser"
+                }).done(function(data){
+                    if (data.isSuccess) {
+                        window.location.href="http://localhost:8080/users"
+                    } else {
+                        alert("Failed to remove user")
+                    }
+                }) 
+            }
+        })
+
+    })
+    $(document).on("click", ".memberDeleteBtn", function() {
+        $(this).addClass("hidden")
+        $(this).closest("td").find(".memberDeleteConfirmBtn").removeClass("hidden")
+        $(this).closest("td").find(".memberDeleteCancelBtn").removeClass("hidden")
+    })
+    $(document).on("click", ".memberDeleteCancelBtn", function() {
+        $(this).addClass("hidden")
+        $(this).closest("td").find(".memberDeleteConfirmBtn").addClass("hidden")
+        $(this).closest("td").find(".memberDeleteBtn").removeClass("hidden")
+    })
 })

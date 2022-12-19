@@ -15,4 +15,5 @@ public interface UserRepository {
     public List<CountryModel> getCountries() throws SQLException;
     public boolean addUser(UserModel userModel) throws SQLException;
     public boolean modifyUser(UserModel userModel);
+    public boolean deleteUserById(int id);
 }

@@ -42,7 +42,7 @@ $(document).ready(function() {
         if (dataToSend.email != '') {
             $.ajax({
                 method: "POST",
-                url: "http://localhost:8080/api/addUser",
+                url: "http://localhost:8080/api/updateUser",
                 data: JSON.stringify(dataToSend)
             }).done(function(data){
                 if (data.isSuccess) {

@@ -69,4 +69,17 @@ $(document).ready(function() {
     $(document).on("click", ".memberUpdateBtn", function() {
         window.location.href="http://localhost:8080/editUser"
     })
+    $(document).on("click", ".memberDeleteConfirmBtn", function() {
+        window.location.href="http://localhost:8080/api/deleteUser"
+    })
+    $(document).on("click", ".memberDeleteBtn", function() {
+        $(this).addClass("hidden")
+        $(this).closest("td").find(".memberDeleteConfirmBtn").removeClass("hidden")
+        $(this).closest("td").find(".memberDeleteCancelBtn").removeClass("hidden")
+    })
+    $(document).on("click", ".memberDeleteCancelBtn", function() {
+        $(this).addClass("hidden")
+        $(this).closest("td").find(".memberDeleteConfirmBtn").addClass("hidden")
+        $(this).closest("td").find(".memberDeleteBtn").removeClass("hidden")
+    })
 })
