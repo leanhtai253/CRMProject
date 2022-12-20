@@ -66,9 +66,6 @@ $(document).ready(function() {
     $(document).on("click", "#addMemBtn", function() {
         window.location.href="http://localhost:8080/newUser"
     })
-    $(document).on("click", ".memberUpdateBtn", function() {
-        window.location.href="http://localhost:8080/editUser"
-    })
     $(document).on("click", ".memberDeleteConfirmBtn", function() {
         let userId = $(this).closest(".memberRow").attr("userid")
         var requestData = {

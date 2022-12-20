@@ -48,7 +48,7 @@ $(document).ready(function() {
                 if (data.isSuccess) {
                     window.location.href = "http://localhost:8080/users"
                 } else {
-                    alert("Failed to add user")
+                    alert("Failed to modify user")
                 }
             })
         }

@@ -15,7 +15,22 @@ public class RoleServiceImp implements RoleService{
     }
 
     @Override
+    public RoleModel findRoleById(int id) {
+        return roleRepository.findRoleById(id);
+    }
+
+    @Override
     public boolean addRole(RoleModel role) throws SQLException {
         return roleRepository.addRole(role);
+    }
+
+    @Override
+    public boolean updateRole(int id, RoleModel role) {
+        return roleRepository.updateRole(id, role);
+    }
+
+    @Override
+    public boolean deleteRoleById(int id) {
+        return roleRepository.deleteRoleById(id);
     }
 }
