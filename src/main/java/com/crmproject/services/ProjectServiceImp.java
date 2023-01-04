@@ -36,4 +36,19 @@ public class ProjectServiceImp implements ProjectService{
     public boolean addProject(ProjectModel project) {
         return projectRepository.addProject(project);
     }
+
+    @Override
+    public ProjectModel getProjectById(int id) {
+        return projectRepository.getProjectById(id);
+    }
+
+    @Override
+    public boolean updateProject(int id, ProjectModel project) {
+        return projectRepository.updateProject(id, project);
+    }
+
+    @Override
+    public boolean deleteProjectById(int id) {
+        return projectRepository.deleteProjectById(id);
+    }
 }

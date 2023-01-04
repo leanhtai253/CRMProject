@@ -1,12 +1,9 @@
 package com.crmproject.api;
 
-import com.crmproject.model.MembersTasksByStatus;
-import com.crmproject.model.StatusModel;
-import com.crmproject.model.TaskComplete;
-import com.crmproject.model.UserModel;
-import com.crmproject.model.inheritance.SummaryByStatus;
+import com.crmproject.model.ProjectModel;
 import com.crmproject.payload.ResponseData;
-import com.crmproject.services.*;
+import com.crmproject.services.ProjectService;
+import com.crmproject.services.ProjectServiceImp;
 import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
@@ -16,23 +13,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet(name="projectDetailsApiServlet", urlPatterns = {"/api/projectDetails"})
-public class ProjectDetailsApi extends HttpServlet {
-    private ProjectDetailsService projectDetailsService = new ProjectDetailsServiceImp();
+@WebServlet(name="projectInfoApiServlet",urlPatterns = {"/api/projectInfo"})
+public class ProjectInfoApi extends HttpServlet {
+    ProjectService projectService = new ProjectServiceImp();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ResponseData responseData = new ResponseData();
         try {
             int viewProjectId = (int) req.getSession().getAttribute("viewProjectId");
-            List<MembersTasksByStatus> data = projectDetailsService.getProjectMembersDetails(viewProjectId);
-            responseData.setSuccess(true);
+            ProjectModel project = projectService.getProjectById(viewProjectId);
+            responseData.setData(project);
             responseData.setStatus(200);
-            responseData.setData(data);
+            responseData.setSuccess(true);
         } catch (Exception e) {
-            System.out.println("Error GET project details api " + e);
+            responseData.setSuccess(false);
+            System.out.println("Error getting project info " + e);
         } finally {
             Gson gson = new Gson();
             String json = gson.toJson(responseData);
