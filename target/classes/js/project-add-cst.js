@@ -1,10 +1,5 @@
 $(document).ready(function(){
 
-    $.ajax({
-        method: "GET",
-        url: ""
-    })
-
     $(document).on("click","#addPrjBtn",function(){
         let requestData = {
             name: $("#prNa").val(),

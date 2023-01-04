@@ -145,6 +145,66 @@ public class ProjectRepositoryImp implements ProjectRepository{
 
     }
 
+    @Override
+    public ProjectModel getProjectById(int id) {
+        List<ProjectModel> projects = new ArrayList<>();
+        try {
+            String query = String.format("select * from Project where projectID=%d",id);
+            Connection connection = MysqlConfig.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery(query);
+            while (resultSet.next()) {
+                ProjectModel project = new ProjectModel();
+                project.setName(resultSet.getString("name"));
+                project.setStartD(resultSet.getString("startD"));
+                project.setEndD(resultSet.getString("endD"));
+                projects.add(project);
+            }
+            resultSet.close();
+            preparedStatement.close();
+            connection.close();
+            return projects.get(0);
+        } catch (Exception e) {
+            System.out.println("Error get project " + e);
+            return new ProjectModel();
+        }
+    }
+
+    @Override
+    public boolean updateProject(int id, ProjectModel project) {
+        try {
+            String query = String.format("update Project\n" +
+                            "set name='%s', startD='%s', endD='%s'\n" +
+                            "where projectID=%d;",
+                    project.getName(),project.getStartD(),project.getEndD(), id);
+            Connection connection = MysqlConfig.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            int result = preparedStatement.executeUpdate();
+            preparedStatement.close();
+            connection.close();
+            return true;
+        } catch (Exception e) {
+            System.out.println("Error update project " + e);
+            return false;
+        }
+    }
+
+    @Override
+    public boolean deleteProjectById(int id) {
+        try {
+            String query = String.format("delete from Project where projectID=%d;",id);
+            Connection connection = MysqlConfig.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            int i = preparedStatement.executeUpdate();
+            preparedStatement.close();
+            connection.close();
+            return true;
+        } catch (Exception e) {
+            System.out.println("Error delete project " + e);
+            return false;
+        }
+    }
+
     private ProjectModel fillInProjectInfo(ResultSet resultSet) throws SQLException {
         ProjectModel project = new ProjectModel();
         project.setProjectID(resultSet.getInt("projectID"));

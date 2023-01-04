@@ -28,7 +28,7 @@ public class ProjectDashboadApi extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ResponseData responseData = new ResponseData();
         try {
-            int viewProjectId = Integer.parseInt((String) req.getSession().getAttribute("viewProjectId"));
+            int viewProjectId = (int) req.getSession().getAttribute("viewProjectId");
             List<TasksByStatus> data = projectService.countTasksByStatus(viewProjectId);
             responseData.setStatus(200);
             responseData.setSuccess(true);
@@ -55,7 +55,7 @@ public class ProjectDashboadApi extends HttpServlet {
             for (Map.Entry<String, JsonElement> entry: reqData.entrySet()) {
                 if (entry.getKey().equals("projectid")) {
                     System.out.println("viewProjectID post: " + entry.getValue().getAsString());
-                    req.getSession().setAttribute("viewProjectId",entry.getValue().getAsString());
+                    req.getSession().setAttribute("viewProjectId",entry.getValue().getAsInt());
                 }
             }
             responseData.setStatus(200);
