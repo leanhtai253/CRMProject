@@ -16,6 +16,21 @@ $(document).ready(function() {
     $(document).on("click", "#addTaskBtn", function() {
         window.location.href="http://localhost:8080/newTask"
     })
+    $(document).on("click", ".taskEditBtn", function() {
+        let id = $(this).parents(".taskRow").find(".taskNo").attr("taskid")
+        var requestData = {
+            taskid: id
+        }
+        console.log(id)
+        $.ajax({
+            method: "POST",
+            url: "http://localhost:8080/editTask",
+            data: JSON.stringify(requestData),
+            contentType: "application/json; charset=utf-8"
+        }).done(function(data){
+            window.location.href="http://localhost:8080/taskInfo"
+        })
+    })
 })
 
 function setUpData(da) {

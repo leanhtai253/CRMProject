@@ -9,8 +9,10 @@ import java.util.List;
 public interface TaskRepository {
     public List<TaskModel> getTasksList(int id) throws SQLException;
     public List<TaskModel> getTaskById(int id) throws SQLException;
+    public TaskComplete getCompleteTaskById(int id) throws SQLException;
     public boolean updateTaskStatus(int taskID, int statusID) throws SQLException;
     public List<TaskModel> findTasksByUserAndStatus(int userId, int statusId) throws SQLException;
     public List<TaskComplete> getCompleteTasksList() throws SQLException;
     public boolean addTask(TaskComplete task) throws SQLException;
+    public boolean updateTask(TaskModel task) throws SQLException;
 }
