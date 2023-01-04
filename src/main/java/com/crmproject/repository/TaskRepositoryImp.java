@@ -62,6 +62,37 @@ public class TaskRepositoryImp implements TaskRepository{
     }
 
     @Override
+    public TaskComplete getCompleteTaskById(int id) throws SQLException {
+        List<TaskComplete> tasks = new ArrayList<>();
+        try {
+            String query = String.format("select taskID, t.name as task, p.name as project, \n" +
+                    "\t\tconcat(u.firstName,space(1),u.lastName) as member,\n" +
+                    "        t.start_date as startD, t.end_date as endD,\n" +
+                    "        st.name as status\n" +
+                    "from Task t\n" +
+                    "JOIN Project p on t.projectID=p.projectID\n" +
+                    "JOIN User u on t.member=u.userID\n" +
+                    "JOIN Status st on st.statusID=t.status\n" +
+                    "where t.taskID=%d;",id);
+            Connection connection = MysqlConfig.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery(query);
+            while (resultSet.next()) {
+                TaskComplete task = fillInTaskCompleteInfo(resultSet);
+                tasks.add(task);
+            }
+            resultSet.close();
+            preparedStatement.close();
+            connection.close();
+            return tasks.get(0);
+        } catch (Exception e) {
+            System.out.println("Error querying task complete by id " + e);
+            return null;
+        }
+
+    }
+
+    @Override
     public boolean updateTaskStatus(int taskID, int statusID) throws SQLException {
         List<TaskModel> list = new ArrayList<>();
         String query = String.format("UPDATE Task\n" +
@@ -143,6 +174,26 @@ public class TaskRepositoryImp implements TaskRepository{
             return true;
         } catch (Exception e) {
             System.out.println("Error add task " + e);
+            return false;
+        }
+    }
+
+    @Override
+    public boolean updateTask(TaskModel task) throws SQLException {
+        try {
+            String query = String.format("update Task\n" +
+                            "set name='%s', start_date='%s', end_date='%s', status=%d\n" +
+                            "where taskID=%d;",
+                    task.getTask(), task.getStart_date(), task.getEnd_date(),
+                    Integer.parseInt(task.getStatus()), task.getId());
+            Connection connection = MysqlConfig.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            int result = preparedStatement.executeUpdate();
+            preparedStatement.close();
+            connection.close();
+            return true;
+        } catch (Exception e) {
+            System.out.println("Error updating task " + e);
             return false;
         }
     }

@@ -22,6 +22,11 @@ public class TaskServiceImp implements TaskService{
     }
 
     @Override
+    public TaskComplete getCompleteTaskById(int id) throws SQLException {
+        return taskRepository.getCompleteTaskById(id);
+    }
+
+    @Override
     public boolean updateTaskStatus(int taskID, int statusID) throws SQLException {
         return taskRepository.updateTaskStatus(taskID, statusID);
     }
@@ -39,5 +44,10 @@ public class TaskServiceImp implements TaskService{
     @Override
     public boolean addTask(TaskComplete task) throws SQLException {
         return taskRepository.addTask(task);
+    }
+
+    @Override
+    public boolean updateTask(TaskModel task) throws SQLException {
+        return taskRepository.updateTask(task);
     }
 }
