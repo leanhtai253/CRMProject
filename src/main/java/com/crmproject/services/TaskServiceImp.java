@@ -50,4 +50,9 @@ public class TaskServiceImp implements TaskService{
     public boolean updateTask(TaskModel task) throws SQLException {
         return taskRepository.updateTask(task);
     }
+
+    @Override
+    public boolean deleteTaskById(int id) {
+        return taskRepository.deleteTaskById(id);
+    }
 }

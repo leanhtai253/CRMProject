@@ -88,6 +88,11 @@ public class LoginApi extends HttpServlet {
                     UserModel currentUser = userList.get(0);
                     req.getSession().setAttribute("userId", currentUser.getUserID());
                     req.getSession().setAttribute("currentUser", currentUser);
+                    if (currentUser.getRoleID() == 1) {
+                        req.getSession().setAttribute("isAdmin", true);
+                    } else {
+                        req.getSession().setAttribute("isAdmin", false);
+                    }
                     req.getSession().setMaxInactiveInterval(10*60);
 
                     responseData.setData(currentUser);

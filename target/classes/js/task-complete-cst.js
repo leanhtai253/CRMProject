@@ -31,6 +31,40 @@ $(document).ready(function() {
             window.location.href="http://localhost:8080/taskInfo"
         })
     })
+    $(document).on("click", ".deleteConfirmBtn", function() {
+        let id = $(this).parents(".taskRow").find(".taskNo").attr("taskid")
+        var requestData = {
+            taskid: id
+        }
+        console.log(id)
+        $.ajax({
+            method: "POST",
+            url: "http://localhost:8080/editTask",
+            data: JSON.stringify(requestData),
+            contentType: "application/json; charset=utf-8"
+        }).done(function(data){
+            $.ajax({
+                method: "POST",
+                url: "http://localhost:8080/api/deleteTask"
+            }).done(function(data){
+                if (data.isSuccess) {
+                    window.location.href="http://localhost:8080/tasks"
+                } else {
+                    alert("Failed to delete task.")
+                }
+            })
+        })
+    })
+    $(document).on("click", ".deleteBtn", function() {
+        $(this).addClass("hidden")
+        $(this).closest("td").find(".deleteConfirmBtn").removeClass("hidden")
+        $(this).closest("td").find(".deleteCancelBtn").removeClass("hidden")
+    })
+    $(document).on("click", ".deleteCancelBtn", function() {
+        $(this).addClass("hidden")
+        $(this).closest("td").find(".deleteConfirmBtn").addClass("hidden")
+        $(this).closest("td").find(".deleteBtn").removeClass("hidden")
+    })
 })
 
 function setUpData(da) {

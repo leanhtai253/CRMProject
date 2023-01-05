@@ -15,4 +15,5 @@ public interface TaskService {
     public List<TaskComplete> getCompleteTasksList() throws SQLException;
     public boolean addTask(TaskComplete task) throws SQLException;
     public boolean updateTask(TaskModel task) throws SQLException;
+    public boolean deleteTaskById(int id);
 }

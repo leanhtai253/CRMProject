@@ -44,15 +44,15 @@ $(document).ready(function() {
             url:"http://localhost:8080/api/updateTask",
             data: JSON.stringify(reqData),
         }).done(function(data){
-            console.log(data)
-            // if (data.isSuccess) {
-            //     window.location.href = "http://localhost:8080/tasks";
-            // } else {
-            //     alert("Failed to edit task")
-            // }
+            if (data.isSuccess) {
+                window.location.href = "http://localhost:8080/tasks";
+            } else {
+                alert("Failed to edit task")
+            }
         })
     })
     $("#returnBtn").click(function(){
         window.location.href = "http://localhost:8080/tasks";
     })
+
 })
