@@ -14,12 +14,17 @@ import java.util.Map;
 
 @WebFilter("/*")
 public class LoginFilter implements Filter {
-    Redirect redirect = null;
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpServletResponse resp = (HttpServletResponse) servletResponse;
+//        if (req.getServletPath().startsWith("/public/js")) {
+//            String js_url = req.getContextPath() + req.getServletPath().replace("/public","");
+//            System.out.println(js_url);
+//            resp.sendRedirect(js_url);
+//        }
 //        filterChain.doFilter(servletRequest, servletResponse);
+        System.out.println(req.getServletPath());
         if (!req.getServletPath().equals("/login")) {
             if (req.getServletPath().startsWith("/js") || req.getServletPath().equals("/api/login")) {
                 filterChain.doFilter(servletRequest,servletResponse);

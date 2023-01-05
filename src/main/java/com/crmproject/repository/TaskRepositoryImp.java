@@ -198,6 +198,22 @@ public class TaskRepositoryImp implements TaskRepository{
         }
     }
 
+    @Override
+    public boolean deleteTaskById(int id) {
+        try {
+            String query = String.format("delete from Task where taskID=%d",id);
+            Connection connection = MysqlConfig.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            int result = preparedStatement.executeUpdate();
+            preparedStatement.close();
+            connection.close();
+            return true;
+        } catch (Exception e) {
+            System.out.println("Error deleting task " + e);
+            return false;
+        }
+    }
+
     private TaskModel fillInTaskInfo(ResultSet resultSet) throws SQLException {
         TaskModel task = new TaskModel();
         task.setId(resultSet.getInt("id"));
