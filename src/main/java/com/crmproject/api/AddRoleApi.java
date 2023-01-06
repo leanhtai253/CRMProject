@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Map;
 
-@WebServlet(name="addRoleApiServlet", urlPatterns = {"/api/addRole"})
+@WebServlet(name="addRoleApiServlet", urlPatterns = {"/p/api/addRole"})
 public class AddRoleApi extends HttpServlet {
     private RoleService roleService = new RoleServiceImp();
     @Override

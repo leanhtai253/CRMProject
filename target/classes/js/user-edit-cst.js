@@ -42,13 +42,17 @@ $(document).ready(function() {
         if (dataToSend.email != '') {
             $.ajax({
                 method: "POST",
-                url: "http://localhost:8080/api/updateUser",
+                url: "http://localhost:8080/p/api/updateUser",
                 data: JSON.stringify(dataToSend)
             }).done(function(data){
-                if (data.isSuccess) {
-                    window.location.href = "http://localhost:8080/users"
+                if (data.status == 200) {
+                    if (data.isSuccess) {
+                        window.location.href="http://localhost:8080/users"
+                    } else {
+                        alert("Failed to modify user")
+                    }
                 } else {
-                    alert("Failed to modify user")
+                    window.location.href="http://localhost:8080/notAllowed"
                 }
             })
         }

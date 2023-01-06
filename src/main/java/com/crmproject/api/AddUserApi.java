@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Map;
 
-@WebServlet(name="addUserApiServlet", urlPatterns = {"/api/addUser"})
+@WebServlet(name="addUserApiServlet", urlPatterns = {"/p/api/addUser"})
 public class AddUserApi extends HttpServlet {
     private UserService userService = new UserServiceImp();
     @Override

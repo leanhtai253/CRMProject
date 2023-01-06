@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name="deleteTaskApiServlet", urlPatterns = {"/api/deleteTask"})
+@WebServlet(name="deleteTaskApiServlet", urlPatterns = {"/p/api/deleteTask"})
 public class DeleteTaskApi extends HttpServlet {
     private TaskService taskService = new TaskServiceImp();
     @Override

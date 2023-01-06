@@ -44,13 +44,17 @@ $(document).ready(function(){
         } else {
             $.ajax({
                 method: "POST",
-                url: "http://localhost:8080/api/addTask",
+                url: "http://localhost:8080/p/api/addTask",
                 data: JSON.stringify(reqData)
             }).done(function(data){
-                if (data.isSuccess) {
-                    window.location.href="http://localhost:8080/tasks"
+                if (data.status == 200) {
+                    if (data.isSuccess) {
+                        window.location.href="http://localhost:8080/tasks"
+                    } else {
+                        alert("Failed to add task")
+                    }
                 } else {
-                    alert("Failed to add new task.")
+                    window.location.href="http://localhost:8080/notAllowed"
                 }
             })
         }

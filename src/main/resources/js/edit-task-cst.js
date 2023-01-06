@@ -45,7 +45,7 @@ $(document).ready(function() {
             method:"POST",
             url:"http://localhost:8080/api/taskToEdit?statusId="+newStatusId
         }).done(function(data){})
-        window.location.href = "http://localhost:8080/public/profile";
+        window.location.href = "http://localhost:8080/profile";
         return false;
     })
     // $(document).on("click","#updateSubmitBtn", function() {

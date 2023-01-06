@@ -1,6 +1,5 @@
 
 $(document).ready(function(){
-    alert("javascript working")
     $("#loginBtn").on("click", loginFunction)
     $(document).on("keypress", function(event){
         if (event.which == 13) {

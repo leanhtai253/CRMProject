@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name="deleteRoleApiServlet", urlPatterns = {"/api/deleteRole"})
+@WebServlet(name="deleteRoleApiServlet", urlPatterns = {"/p/api/deleteRole"})
 public class DeleteRoleApi extends HttpServlet {
     RoleService roleService = new RoleServiceImp();
     @Override

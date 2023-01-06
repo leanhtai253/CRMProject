@@ -80,12 +80,16 @@ $(document).ready(function() {
             if (data.isSuccess) {
                 $.ajax({
                     method: "POST",
-                    url: "http://localhost:8080/api/deleteUser"
+                    url: "http://localhost:8080/p/api/deleteUser"
                 }).done(function(data){
-                    if (data.isSuccess) {
-                        window.location.href="http://localhost:8080/users"
+                    if (data.status == 200) {
+                        if (data.isSuccess) {
+                            window.location.href="http://localhost:8080/users"
+                        } else {
+                            alert("Failed to remove user")
+                        }
                     } else {
-                        alert("Failed to remove user")
+                        window.location.href="http://localhost:8080/notAllowed"
                     }
                 }) 
             }

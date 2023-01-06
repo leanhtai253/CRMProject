@@ -19,13 +19,17 @@ $(document).ready(function(){
         if (dataToSend.name != '') {
             $.ajax({
                 method: "POST",
-                url: "http://localhost:8080/api/updateRole",
+                url: "http://localhost:8080/p/api/updateRole",
                 data: JSON.stringify(dataToSend)
             }).done(function(data){
-                if (data.isSuccess) {
-                    window.location.href = "http://localhost:8080/roles"
-                } else {
-                    alert("Failed to modify role")
+                if (data.status == 200) {
+                    if (data.isSuccess) {
+                        window.location.href="http://localhost:8080/roles"
+                    } else {
+                        alert("Failed to modify role")
+                    }
+                } else if (data.status==403){
+                    window.location.href="http://localhost:8080/notAllowed"
                 }
             })
         }

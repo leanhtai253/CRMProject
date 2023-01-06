@@ -45,12 +45,16 @@ $(document).ready(function() {
         }).done(function(data){
             $.ajax({
                 method: "POST",
-                url: "http://localhost:8080/api/deleteTask"
+                url: "http://localhost:8080/p/api/deleteTask"
             }).done(function(data){
-                if (data.isSuccess) {
-                    window.location.href="http://localhost:8080/tasks"
+                if (data.status == 200) {
+                    if (data.isSuccess) {
+                        window.location.href="http://localhost:8080/tasks"
+                    } else {
+                        alert("Failed to delete task")
+                    }
                 } else {
-                    alert("Failed to delete task.")
+                    window.location.href="http://localhost:8080/notAllowed"
                 }
             })
         })

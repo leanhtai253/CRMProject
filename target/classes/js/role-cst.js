@@ -48,12 +48,16 @@ $(document).ready(function(){
             if (data.isSuccess) {
                 $.ajax({
                     method: "POST",
-                    url: "http://localhost:8080/api/deleteRole"
+                    url: "http://localhost:8080/p/api/deleteRole"
                 }).done(function(data){
-                    if (data.isSuccess) {
-                        window.location.href="http://localhost:8080/roles"
+                    if (data.status == 200) {
+                        if (data.isSuccess) {
+                            window.location.href="http://localhost:8080/roles"
+                        } else {
+                            alert("Failed to remove role")
+                        }
                     } else {
-                        alert("Failed to remove role")
+                        window.location.href="http://localhost:8080/notAllowed"
                     }
                 })
             }

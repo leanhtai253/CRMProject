@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Map;
 
-@WebServlet(name="updateProjectApiServlet", urlPatterns = {"/api/updateProject"})
+@WebServlet(name="updateProjectApiServlet", urlPatterns = {"/p/api/updateProject"})
 public class UpdateProjectApi extends HttpServlet {
     private ProjectService projectService = new ProjectServiceImp();
     @Override
