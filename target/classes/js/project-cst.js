@@ -52,12 +52,16 @@ $(document).ready(function(){
             if (data.isSuccess) {
                 $.ajax({
                     method: "POST",
-                    url: "http://localhost:8080/api/deleteProject"
+                    url: "http://localhost:8080/p/api/deleteProject"
                 }).done(function(data){
-                    if (data.isSuccess) {
-                        window.location.href="http://localhost:8080/projects"
+                    if (data.status == 200) {
+                        if (data.isSuccess) {
+                            window.location.href="http://localhost:8080/projects"
+                        } else {
+                            alert("Failed to remove project")
+                        }
                     } else {
-                        alert("Failed to remove project")
+                        window.location.href="http://localhost:8080/notAllowed"
                     }
                 })
             }

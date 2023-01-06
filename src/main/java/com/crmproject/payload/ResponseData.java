@@ -1,7 +1,7 @@
 package com.crmproject.payload;
 
 public class ResponseData {
-    private int status;
+    private int status=200;
     private boolean isSuccess;
     private Object data;
 

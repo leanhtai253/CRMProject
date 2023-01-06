@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Map;
 
-@WebServlet(name="addTaskApiServlet", urlPatterns = {"/api/addTask"})
+@WebServlet(name="addTaskApiServlet", urlPatterns = {"/p/api/addTask"})
 public class AddTaskApi extends HttpServlet {
     private Gson gson = new Gson();
     private TaskService taskService = new TaskServiceImp();

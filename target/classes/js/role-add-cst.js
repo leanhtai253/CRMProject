@@ -7,13 +7,17 @@ $(document).ready(function(){
         if (requestData.roleName != '') {
             $.ajax({
                 method: "POST",
-                url: "http://localhost:8080/api/addRole",
+                url: "http://localhost:8080/p/api/addRole",
                 data: JSON.stringify(requestData)
             }).done(function(data){
-                if (data.isSuccess) {
-                    window.location.href="http://localhost:8080/roles"
+                if (data.status == 200) {
+                    if (data.isSuccess) {
+                        window.location.href="http://localhost:8080/roles"
+                    } else {
+                        alert("Failed to add role")
+                    }
                 } else {
-                    alert("Failed to add role")
+                    window.location.href="http://localhost:8080/notAllowed"
                 }
             })
         } else {

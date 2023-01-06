@@ -41,13 +41,17 @@ $(document).ready(function() {
         console.log(reqData)
         $.ajax({
             method:"POST",
-            url:"http://localhost:8080/api/updateTask",
+            url:"http://localhost:8080/p/api/updateTask",
             data: JSON.stringify(reqData),
         }).done(function(data){
-            if (data.isSuccess) {
-                window.location.href = "http://localhost:8080/tasks";
+            if (data.status == 200) {
+                if (data.isSuccess) {
+                    window.location.href="http://localhost:8080/tasks"
+                } else {
+                    alert("Failed to modify task")
+                }
             } else {
-                alert("Failed to edit task")
+                window.location.href="http://localhost:8080/notAllowed"
             }
         })
     })

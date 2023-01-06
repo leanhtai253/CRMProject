@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name="deleteProjectApiServlet", urlPatterns = {"/api/deleteProject"})
+@WebServlet(name="deleteProjectApiServlet", urlPatterns = {"/p/api/deleteProject"})
 public class DeleteProjectApi extends HttpServlet {
     private ProjectService projectService = new ProjectServiceImp();
     @Override

@@ -22,13 +22,17 @@ $(document).ready(function() {
         if (dataToSend.email != '' && dataToSend.pwd!='') {
             $.ajax({
                 method: "POST",
-                url: "http://localhost:8080/api/addUser",
+                url: "http://localhost:8080/p/api/addUser",
                 data: JSON.stringify(dataToSend)
             }).done(function(data){
-                if (data.isSuccess) {
-                    window.location.href = "http://localhost:8080/users"
+                if (data.status == 200) {
+                    if (data.isSuccess) {
+                        window.location.href="http://localhost:8080/users"
+                    } else {
+                        alert("Failed to add user")
+                    }
                 } else {
-                    alert("Failed to add user")
+                    window.location.href="http://localhost:8080/notAllowed"
                 }
             })
         }

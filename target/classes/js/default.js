@@ -1,14 +1,14 @@
 $(document).ready(function () {
 
     var contextPath = "http://localhost:8080"
-    var profilePage = contextPath + "/public/profile"
-    var taskSummaryPage = contextPath + "/public/taskSummary"
-    var logOutPage = contextPath + "/public/api/logout"
-    var dashboardPage = contextPath + "/public/dashboard"
-    var rolesPage = contextPath + "/public/roles"
-    var usersPage = contextPath + "/public/users"
-    var tasksPage = contextPath + "/public/tasks"
-    var projectsPage = contextPath + "/public/projects"
+    var profilePage = contextPath + "/profile"
+    var taskSummaryPage = contextPath + "/taskSummary"
+    var logOutPage = contextPath + "/api/logout"
+    var dashboardPage = contextPath + "/dashboard"
+    var rolesPage = contextPath + "/roles"
+    var usersPage = contextPath + "/users"
+    var tasksPage = contextPath + "/tasks"
+    var projectsPage = contextPath + "/projects"
 
     $.ajax({
         method: "GET",
@@ -24,6 +24,7 @@ $(document).ready(function () {
         $("#sideRoles").attr("href", rolesPage)
         $("#sideTasks").attr("href",tasksPage)
         $("#sideProjects").attr("href", projectsPage)
+        $("#navLogout").attr("href",logOutPage)
     })
 
 })

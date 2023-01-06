@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Map;
 
-@WebServlet(name="updateTaskApiServlet", urlPatterns = {"/api/updateTask"})
+@WebServlet(name="updateTaskApiServlet", urlPatterns = {"/p/api/updateTask"})
 public class UpdateTaskApi extends HttpServlet {
     private TaskService taskService = new TaskServiceImp();
     @Override

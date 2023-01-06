@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Map;
 
-@WebServlet(name="updateRoleApiServlet", urlPatterns = {"/api/updateRole"})
+@WebServlet(name="updateRoleApiServlet", urlPatterns = {"/p/api/updateRole"})
 public class UpdateRoleApi extends HttpServlet {
     private RoleService roleService = new RoleServiceImp();
     @Override

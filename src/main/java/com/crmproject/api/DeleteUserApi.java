@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Map;
 
-@WebServlet(name="deleteUserApiServlet", urlPatterns = {"/api/deleteUser"})
+@WebServlet(name="deleteUserApiServlet", urlPatterns = {"/p/api/deleteUser"})
 public class DeleteUserApi extends HttpServlet {
     UserService userService = new UserServiceImp();
     @Override
